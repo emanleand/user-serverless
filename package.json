@@ -1,0 +1,26 @@
+{
+  "name": "user-serverless",
+  "version": "1.0.0",
+  "description": "Serverless project that creates new user accounts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emanleand/user-serverless.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emanleand/user-serverless/issues"
+  },
+  "homepage": "https://github.com/emanleand/user-serverless#readme",
+  "dependencies": {
+    "aws-sdk": "^2.862.0",
+    "schemy": "^1.11.0",
+    "serverless-offline": "^6.8.0",
+    "uuid": "^8.3.2"
+  }
+}

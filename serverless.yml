@@ -1,0 +1,19 @@
+frameworkVersion: ">=1.78.1"
+service: practice-user
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  tags:
+    project: practice-user
+
+resources:
+  - ${file(src/resources/tables.serverless.yml)}
+
+functions:
+  #lambas associated with user
+  - ${file(src/handler/user.serverless.yml)}

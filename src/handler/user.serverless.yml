@@ -1,0 +1,36 @@
+create:
+  handler: src/handler/user/create.create
+  events:
+    - http:
+        path: user
+        method: post
+        cors: true
+  environment:
+      USER_TABLE: users 
+
+Get:
+  handler: src/handler/user/get.get
+  events:
+    - http:
+        path: user/{uuid}
+        method: get
+  environment:
+      USER_TABLE: users 
+
+remove:
+  handler: src/handler/user/remove.remove
+  events:
+    - http:
+        path: user/remove/{uuid}
+        method: delete
+  environment:
+      USER_TABLE: users 
+
+disable:
+  handler: src/handler/user/disable.disable
+  events:
+    - http:
+        path: user/disable/{uuid}
+        method: patch
+  environment:
+      USER_TABLE: users 
