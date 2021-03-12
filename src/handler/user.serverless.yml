@@ -6,7 +6,7 @@ create:
         method: post
         cors: true
   environment:
-      USER_TABLE: users 
+      USER_TABLE: ${self:custom.table.user}
 
 Get:
   handler: src/handler/user/get.get
@@ -15,7 +15,7 @@ Get:
         path: user/{uuid}
         method: get
   environment:
-      USER_TABLE: users 
+      USER_TABLE: ${self:custom.table.user}
 
 remove:
   handler: src/handler/user/remove.remove
@@ -24,7 +24,7 @@ remove:
         path: user/remove/{uuid}
         method: delete
   environment:
-      USER_TABLE: users 
+      USER_TABLE: ${self:custom.table.user}
 
 disable:
   handler: src/handler/user/disable.disable
@@ -33,4 +33,4 @@ disable:
         path: user/disable/{uuid}
         method: patch
   environment:
-      USER_TABLE: users 
+      USER_TABLE: ${self:custom.table.user}

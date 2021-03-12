@@ -10,6 +10,9 @@ provider:
   stage: dev
   tags:
     project: practice-user
+    
+    #this is used to separate variables for local use that are not needed in prod
+  environment: ${file(environment/${self:custom.currentStage}.serverless.yml)}
 
 resources:
   - ${file(src/resources/tables.serverless.yml)}
@@ -17,3 +20,10 @@ resources:
 functions:
   #lambas associated with user
   - ${file(src/handler/user.serverless.yml)}
+
+custom:
+  table: 
+    user: users
+  
+  # manage stage 
+  currentStage: ${opt:stage, self:provider.stage}

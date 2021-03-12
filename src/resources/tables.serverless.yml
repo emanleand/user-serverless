@@ -16,4 +16,4 @@ Resources:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
 
-      TableName: users
+      TableName: ${self:custom.table.user}

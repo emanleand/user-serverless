@@ -23,7 +23,7 @@ async function create(event, context) {
         if (!Schema.validate(request)) {
             return createBadRequest(Schema.getValidationErrors())
         }
-        //prepare new user
+        /* prepare new user */
         let user = {
             id: uuidv4(),
             name: request.name,
