@@ -1,5 +1,5 @@
 create:
-  handler: src/handler/user/create.create
+  handler: src/user/create.create
   events:
     - http:
         path: user
@@ -9,7 +9,7 @@ create:
       USER_TABLE: ${self:custom.table.user}
 
 Get:
-  handler: src/handler/user/get.get
+  handler: src/user/get.get
   events:
     - http:
         path: user/{uuid}
@@ -18,7 +18,7 @@ Get:
       USER_TABLE: ${self:custom.table.user}
 
 remove:
-  handler: src/handler/user/remove.remove
+  handler: src/user/remove.remove
   events:
     - http:
         path: user/remove/{uuid}
@@ -27,7 +27,7 @@ remove:
       USER_TABLE: ${self:custom.table.user}
 
 disable:
-  handler: src/handler/user/disable.disable
+  handler: src/user/disable.disable
   events:
     - http:
         path: user/disable/{uuid}

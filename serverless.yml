@@ -9,17 +9,16 @@ provider:
   runtime: nodejs12.x
   stage: dev
   tags:
-    project: practice-user
-    
+    project: practice-user   
     #this is used to separate variables for local use that are not needed in prod
-  environment: ${file(environment/${self:custom.currentStage}.serverless.yml)}
-
+  environment: 
+    CONFIG: ${file(config.${self:custom.currentStage}.json):config}
 resources:
-  - ${file(src/resources/tables.serverless.yml)}
+  - ${file(src/resources/tables.yml)}
 
 functions:
   #lambas associated with user
-  - ${file(src/handler/user.serverless.yml)}
+  - ${file(src/user/user.yml)}
 
 custom:
   table: 

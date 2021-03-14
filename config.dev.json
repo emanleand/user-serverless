@@ -1,0 +1,8 @@
+{
+  "config":{
+    "endpoint":"http://localhost:8000",
+    "region":"us-west-1",
+    "accessKeyId":"fake-access-key",
+    "secretAccessKey":"fake-secret-key"
+  }
+}

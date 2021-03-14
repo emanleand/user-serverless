@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 const {
     createConflict,
     createOk
-} = require('../../util/util');
+} = require('../util/util');
 
 AWS.config.update({
     endpoint: 'http://localhost:8000',
@@ -11,26 +11,26 @@ AWS.config.update({
     secretAccessKey: 'fake-secret-key'
 });
 
-async function disable(event, context) {
+async function get(event, context) {
     try {
         const uuid = event.pathParameters.uuid;
 
         const DocumentClient = new AWS.DynamoDB.DocumentClient();
-        await DocumentClient.update({
+        const item = await DocumentClient.query({
             TableName: process.env.USER_TABLE,
-            Key: {
-                id: uuid
+            KeyConditionExpression: '#id = :id',
+            ExpressionAttributeNames: {
+                '#id': 'id'
             },
-            UpdateExpression: 'set user_status = :status',
             ExpressionAttributeValues: {
-                ':status': 'disabled'
+                ':id': uuid
             }
         }).promise();
 
-        return createOk({ message: 'success' })
+        return createOk(item);
     } catch (err) {
         return createConflict();
     }
 }
 
-module.exports = { disable }
+module.exports = { get }

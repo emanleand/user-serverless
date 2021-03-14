@@ -1,11 +1,11 @@
 const { v4: uuidv4 } = require('uuid');
 const AWS = require('aws-sdk');
-const Schema = require('../../util/schema');
+const Schema = require('../util/schema');
 const {
     createBadRequest,
     createConflict,
     createCreated
-} = require('../../util/util');
+} = require('../util/util');
 
 AWS.config.update({
     endpoint: 'http://localhost:8000',
@@ -14,11 +14,11 @@ AWS.config.update({
     secretAccessKey: 'fake-secret-key'
 })
 
-async function create(event, context) {
+async function create(event, context, callback) {
     try {
         const request = JSON.parse(event.body);
         const DocumentClient = new AWS.DynamoDB.DocumentClient();
-
+    
         /* Validation */
         if (!Schema.validate(request)) {
             return createBadRequest(Schema.getValidationErrors())
@@ -32,14 +32,14 @@ async function create(event, context) {
             create_on: Math.floor(new Date().getTime() / 1000.0),
             user_status: 'active'
         };
-
+    
         await DocumentClient.put({
             TableName: process.env.USER_TABLE,
             Item: user
         }).promise();
 
         return createCreated(user);
-    } catch (err) {
+    } catch (error) {
         return createConflict();
     }
 }

@@ -1,6 +1,0 @@
-# Here it should handle the environment variables
-STAGE:
-  # endpoint: 'http://localhost:8000'
-  # region: 'us-west-1'
-  # accessKeyId: 'fake-access-key'
-  # secretAccessKey: 'fake-secret-key'

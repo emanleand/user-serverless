@@ -29,6 +29,20 @@ function createConflict(message = 'Conflict') {
 
 /**
  * 
+ * @param {String} message 
+ * @returns This will result in a 401 response code
+ */
+ function createUnauthorizer(message = 'Unauthorized') {
+    return {
+        statusCode: 401,
+        body: JSON.stringify({
+            message: message
+        })
+    }
+}
+
+/**
+ * 
  * @param {Object} data 
  * @returns This will result in a 201 response code
  */
@@ -59,5 +73,6 @@ module.exports = {
     createBadRequest, 
     createConflict, 
     createCreated,
-    createOk
+    createOk,
+    createUnauthorizer
 }

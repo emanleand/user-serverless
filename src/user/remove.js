@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 const {
     createConflict,
     createOk
-} = require('../../util/util');
+} = require('../util/util');
 
 AWS.config.update({
     endpoint: 'http://localhost:8000',
