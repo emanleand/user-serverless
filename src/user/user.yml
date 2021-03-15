@@ -5,7 +5,7 @@ create:
         path: user
         method: post
         cors: true
-        authorizer: auth
+        authorizer: authApp
   environment:
     USER_TABLE: ${self:custom.table.user}
 
@@ -15,7 +15,7 @@ Get:
     - http:
         path: user/{uuid}
         method: get
-        authorizer: auth
+        authorizer: authApp
   environment:
     USER_TABLE: ${self:custom.table.user}
 
@@ -25,7 +25,7 @@ remove:
     - http:
         path: user/remove/{uuid}
         method: delete
-        authorizer: auth
+        authorizer: authApp
   environment:
     USER_TABLE: ${self:custom.table.user}
 
@@ -35,11 +35,9 @@ disable:
     - http:
         path: user/disable/{uuid}
         method: patch
-        authorizer: auth
+        authorizer: authApp
   environment:
     USER_TABLE: ${self:custom.table.user}
 
-auth:
-  handler: src/util/authorizer.authorizer
-  environment:
-    APP_TABLE: ${self:custom.table.app}
+#Note
+#authApp defined by src/authorizer/authorizer.yml

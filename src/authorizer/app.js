@@ -10,7 +10,7 @@ AWS.config.update({
     secretAccessKey: 'fake-secret-key'
 });
 
-async function authorizer(event, context) {
+async function app(event, context) {
     if (!event.authorizationToken) {
         return createUnauthorizer();
     }
@@ -67,4 +67,4 @@ function generatePolicy (principalId, effect, resource) {
     return authResponse;
 }
 
-module.exports = { authorizer }
+module.exports = { app }

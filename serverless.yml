@@ -19,6 +19,8 @@ resources:
 functions:
   #lambas associated with user
   - ${file(src/user/user.yml)}
+  #lambdas associated with authorization
+  - ${file(src/authorizer/authorizer.yml)}
 
 custom:
   table: 

@@ -1,0 +1,5 @@
+#lambda associated with app authentication that can consume the app
+authApp:
+  handler: src/authorizer/app.app
+  environment:
+    APP_TABLE: ${self:custom.table.app}
