@@ -12,12 +12,12 @@ AWS.config.update({
 
 async function app(event, context) {
     if (!event.authorizationToken) {
-        return createUnauthorizer();
+        throw createUnauthorizer();
     }
 
     let authSplit = event.authorizationToken.split(' ');
     if (authSplit[0] !== 'Bearer' || !authSplit[1]) {
-        return createUnauthorizer();
+        throw createUnauthorizer();
     }
 
     const DocumentClient = new AWS.DynamoDB.DocumentClient();
@@ -34,7 +34,7 @@ async function app(event, context) {
     }).promise();
 
     if (app.Count === 0) {
-        return createUnauthorizer();
+        throw createUnauthorizer();
     }
 
     return generatePolicy('id123', 'Allow', event.methodArn)
@@ -48,8 +48,8 @@ async function app(event, context) {
  * 
  * @returns {Obejct}
  */
-function generatePolicy (principalId, effect, resource) {
-    
+function generatePolicy(principalId, effect, resource) {
+
     const authResponse = {};
     authResponse.principalId = principalId;
 

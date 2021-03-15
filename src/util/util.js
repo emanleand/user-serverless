@@ -43,28 +43,28 @@ function createConflict(message = 'Conflict') {
 
 /**
  * 
- * @param {Object} data 
+ * @param {Object} user 
  * @returns This will result in a 201 response code
  */
-function createCreated(data) {
+function createCreated(user) {
     return {
         statusCode: 201,
         body: JSON.stringify({
-            data
+            user
         })
     }
 }
 
 /**
  * 
- * @param {Object} data 
+ * @param {Object} response 
  * @returns This will result in a 200 response code
  */
-function createOk(data) {
+function createOk(response) {
     return {
         statusCode: 200,
         body: JSON.stringify({
-            data
+            response
         })
     }
 }

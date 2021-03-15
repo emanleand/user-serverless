@@ -38,7 +38,10 @@ async function create(event, context, callback) {
             Item: user
         }).promise();
 
-        return createCreated(user);
+        return createCreated({
+            uuid: user.id,
+            name: user.name
+        });
     } catch (error) {
         return createConflict();
     }
