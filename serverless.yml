@@ -23,6 +23,7 @@ functions:
 custom:
   table: 
     user: users
+    app: apps
   
   # manage stage 
   currentStage: ${opt:stage, self:provider.stage}

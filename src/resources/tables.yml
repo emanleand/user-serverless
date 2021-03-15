@@ -15,5 +15,23 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
-
       TableName: ${self:custom.table.user}
+  
+  # Table to control access to api
+  AppsTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+
+      AttributeDefinitions:
+        - AttributeName: token
+          AttributeType: S
+        - AttributeName: name
+          AttributeType: S
+      KeySchema:
+        - AttributeName: token
+          KeyType: HASH
+
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      TableName: ${self:custom.table.app}
