@@ -7,10 +7,11 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   tags:
     project: practice-user   
     #this is used to separate variables for local use that are not needed in prod
+  # memorize
   environment: 
     CONFIG: ${file(config.${self:custom.currentStage}.json):config}
 resources:

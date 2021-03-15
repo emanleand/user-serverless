@@ -16,6 +16,10 @@ AWS.config.update({
 
 async function create(event, context, callback) {
     try {
+        console.log(process.env.CONFIG); /* [Object Object] */ 
+        const { config } = process.env.CONFIG;
+
+        console.log(config); /* undefined */ 
         const request = JSON.parse(event.body);
         const DocumentClient = new AWS.DynamoDB.DocumentClient();
     
