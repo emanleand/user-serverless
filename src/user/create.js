@@ -7,22 +7,14 @@ const {
     createCreated
 } = require('../util/util');
 
-AWS.config.update({
-    endpoint: 'http://localhost:8000',
-    region: 'us-west-1',
-    accessKeyId: 'fake-access-key',
-    secretAccessKey: 'fake-secret-key'
-})
-
 async function create(event, context, callback) {
     try {
-        console.log(process.env.CONFIG); /* [Object Object] */ 
-        const { config } = process.env.CONFIG;
+        const { config } = require(`../../config.${process.env.STAGE_CURRENT}.json`);
+        AWS.config.update(config);
 
-        console.log(config); /* undefined */ 
         const request = JSON.parse(event.body);
         const DocumentClient = new AWS.DynamoDB.DocumentClient();
-    
+
         /* Validation */
         if (!Schema.validate(request)) {
             return createBadRequest(Schema.getValidationErrors())
@@ -36,7 +28,7 @@ async function create(event, context, callback) {
             create_on: Math.floor(new Date().getTime() / 1000.0),
             user_status: 'active'
         };
-    
+
         await DocumentClient.put({
             TableName: process.env.USER_TABLE,
             Item: user
@@ -46,7 +38,8 @@ async function create(event, context, callback) {
             uuid: user.id,
             name: user.name
         });
-    } catch (error) {
+    } catch (err) {
+        console.log(err)
         return createConflict();
     }
 }

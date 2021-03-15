@@ -14,6 +14,7 @@ provider:
   # memorize
   environment: 
     CONFIG: ${file(config.${self:custom.currentStage}.json):config}
+    STAGE_CURRENT: ${self:custom.currentStage}
 resources:
   - ${file(src/resources/tables.yml)}
 

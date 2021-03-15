@@ -4,15 +4,11 @@ const {
     createOk
 } = require('../util/util');
 
-AWS.config.update({
-    endpoint: 'http://localhost:8000',
-    region: 'us-west-1',
-    accessKeyId: 'fake-access-key',
-    secretAccessKey: 'fake-secret-key'
-});
-
 async function get(event, context) {
     try {
+        const { config } = require(`../../config.${process.env.STAGE_CURRENT}.json`);
+        AWS.config.update(config);
+
         const uuid = event.pathParameters.uuid;
 
         const DocumentClient = new AWS.DynamoDB.DocumentClient();

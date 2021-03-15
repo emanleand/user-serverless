@@ -4,15 +4,11 @@ const {
     createOk
 } = require('../util/util');
 
-AWS.config.update({
-    endpoint: 'http://localhost:8000',
-    region: 'us-west-1',
-    accessKeyId: 'fake-access-key',
-    secretAccessKey: 'fake-secret-key'
-});
-
 async function remove(event, context) {
     try {
+        const { config } = require(`../../config.${process.env.STAGE_CURRENT}.json`);
+        AWS.config.update(config);
+
         const uuid = event.pathParameters.uuid;
 
         const DocumentClient = new AWS.DynamoDB.DocumentClient();
@@ -23,7 +19,7 @@ async function remove(event, context) {
             }
         }).promise();
 
-        return createOk({message: 'Delete ok'});
+        return createOk({ message: 'Delete ok' });
     } catch (err) {
         return createConflict();
     }

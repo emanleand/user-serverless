@@ -3,14 +3,10 @@ const {
     createUnauthorizer
 } = require('../util/util');
 
-AWS.config.update({
-    endpoint: 'http://localhost:8000',
-    region: 'us-west-1',
-    accessKeyId: 'fake-access-key',
-    secretAccessKey: 'fake-secret-key'
-});
-
 async function app(event, context) {
+    const { config } = require(`../../config.${process.env.STAGE_CURRENT}.json`);
+    AWS.config.update(config);
+
     if (!event.authorizationToken) {
         throw createUnauthorizer();
     }
