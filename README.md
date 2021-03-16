@@ -1,6 +1,12 @@
 # user-serverless
 Serverless project that creates new user accounts
 
+## Instalation
+
+- Clone the repo
+- Install serverless: npm install -g serverless
+- Install npm dependencies: npm install
+
 ## Function
 ### Create User
 <img src="./diagrams/icons/POST.svg" alt="drawing" height="17"/> **/dev/user**
@@ -77,4 +83,15 @@ Serverless project that creates new user accounts
         "message": "success"
     }
 
+```
+
+## Deploy
+### Develop
+
+```
+serverless deploy --stage develop
+```
+### Remove
+```
+serverless remove --stage develop
 ```
