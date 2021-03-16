@@ -26,6 +26,11 @@ Serverless project that creates new user accounts
 ### Get User
 <img src="./diagrams/icons/GET.svg" alt="drawing" height="17"/> **/dev/user/{uuid}**
 
+```JAVA
+--header 'Authorization: <Token>' \
+
+```
+
 #### Response
 ```JSON
     "response": {
@@ -45,6 +50,11 @@ Serverless project that creates new user accounts
 ### Remove User
 <img src="./diagrams/icons/DELETE.svg" alt="drawing" height="17"/> **/dev/user/remove/{uuid}**
 
+```JAVA
+--header 'Authorization: <Token>' \
+
+```
+
 #### Response
 ```JSON
     "response": {
@@ -55,6 +65,11 @@ Serverless project that creates new user accounts
 
 ### Disable User
 <img src="./diagrams/icons/PATCH.svg" alt="drawing" height="17"/> **/dev/user/disable/{uuid}**
+
+```JAVA
+--header 'Authorization: <Token>' \
+
+```
 
 #### Response
 ```JSON
