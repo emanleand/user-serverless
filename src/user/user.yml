@@ -13,7 +13,7 @@ Get:
   handler: src/user/get.get
   events:
     - http:
-        path: user/{uuid}
+        path: user/id/{uuid}
         method: get
         authorizer: authApp
   environment:
@@ -39,5 +39,15 @@ disable:
   environment:
     USER_TABLE: ${self:custom.table.user}
 
+getUserEmail:
+  handler: src/user/getUserEmail.getUserEmail
+  events:
+    - http:
+        path: user/email/{email}
+        method: get
+        authorizer: authApp
+  environment:
+    USER_TABLE: ${self:custom.table.user}
+    USER_TABLE_INDEX_EMAIL: ${self:custom.index.email} 
 #Note
 #authApp defined by src/authorizer/authorizer.yml

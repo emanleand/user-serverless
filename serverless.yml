@@ -28,6 +28,8 @@ custom:
   table: 
     user: users
     app: apps
-  
+  index:
+    email: users_email_index
+
   # manage stage 
   currentStage: ${opt:stage, self:provider.stage}

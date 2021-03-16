@@ -6,7 +6,7 @@ Resources:
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
-        - AttributeName: name
+        - AttributeName: email
           AttributeType: S
       KeySchema:
         - AttributeName: id
@@ -16,6 +16,18 @@ Resources:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
       TableName: ${self:custom.table.user}
+
+      GlobalSecondaryIndexes:
+        - IndexName: ${self:custom.index.email}
+          KeySchema:
+            - AttributeName: email
+              KeyType: HASH
+
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
   
   # Table to control access to api
   AppsTable:

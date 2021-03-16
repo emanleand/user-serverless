@@ -39,7 +39,6 @@ async function create(event, context, callback) {
             name: user.name
         });
     } catch (err) {
-        console.log(err)
         return createConflict();
     }
 }
